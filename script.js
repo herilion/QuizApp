@@ -32,6 +32,25 @@ function validationForm() {
         quiz1.style.display = 'block';
     }
 }
+//progressbar
+let m = 100;
+setInterval(() => {
+    if (m >= 0 && quiz1.style.display == 'block') {
+        document.getElementById("progressBarB").style.width = m + '%';
+        m--;
+    }
+
+}, 600);
+
+//minuteur
+let mm = 60;
+setInterval(() => {
+    if (mm >= 0 && quiz1.style.display == 'block') {
+        minuteur1.innerText = mm;
+        mm--;
+    }
+
+}, 1000);
 
 function Question(phrase, assertion, correct) {
     this.phrase = phrase;

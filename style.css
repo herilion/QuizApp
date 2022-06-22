@@ -22,6 +22,8 @@
     
     .container {
         width: 370px;
+        display: flex;
+        flex-direction: column;
         height: 550px;
         margin: 3rem auto;
         padding: 3rem;
@@ -101,6 +103,10 @@
     #quiz1,
     #lastpage {
         display: none;
+    }
+    
+    .minuteur {
+        margin-left: 260px;
     }
     
     .progressBar {
