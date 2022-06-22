@@ -1,0 +1,199 @@
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: rgb(34, 240, 229);
+    }
+    
+    .title,
+    p {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    .firstParam {
+        text-align: center;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .container {
+        width: 370px;
+        height: 550px;
+        margin: 3rem auto;
+        padding: 3rem;
+        border: 1px solid #ddd;
+        background-color: white;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .label {
+        font-weight: bold;
+        display: block;
+        color: #333;
+        margin-bottom: .25rem;
+        color: #2d3748;
+    }
+    
+    .input {
+        appearance: none;
+        display: block;
+        width: 100%;
+        color: #2d3748;
+        border: 1px solid #cbd5e0;
+        line-height: 1.25;
+        background-color: white;
+        padding: .65rem .75rem;
+        border-radius: 0.25rem;
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    }
+    
+    .placeholder {
+        color: #a0aec0;
+    }
+    
+    .input-error {
+        border: 1px solid red;
+    }
+    
+    .focus {
+        outline: none;
+        border: 1px solid #a0aec0;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        background-clip: padding-box;
+    }
+    
+    .input-group {
+        margin-bottom: 2rem;
+        position: relative;
+    }
+    
+    .error-message {
+        font-size: .85rem;
+        color: red;
+    }
+    
+    .button {
+        background-color: rgb(18, 119, 8);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: .25rem;
+        color: white;
+        font-weight: bold;
+        display: block;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+    .buttonContain {
+        display: flex;
+        justify-content: center;
+    }
+    /*
+.pageAccueil {
+    display: none;
+}*/
+    
+    #quiz1,
+    #lastpage {
+        display: none;
+    }
+    
+    .progressBar {
+        min-width: 100px;
+        min-height: 10px;
+        border-radius: 30px;
+        border: 0px solid;
+        background-color: gray
+    }
+    
+    .progressBar0 {
+        width: 100%;
+        height: 10px;
+        background-color: #028A3D;
+        border-radius: 30px;
+    }
+    
+    .reponse1 {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .reponse1 label {
+        margin: 10px;
+        padding: 10px;
+        border: solid 1px rgb(207, 201, 201);
+    }
+    
+    label:hover {
+        border: solid 2px green;
+        cursor: pointer;
+    }
+    
+    .button1 {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .button1 button {
+        flex-grow: inherit;
+        margin: 20px;
+        cursor: pointer;
+    }
+    
+    .buttonQuit1 {
+        background-color: #EC880C;
+        padding: 1rem 3rem;
+        border: none;
+        border-radius: .25rem;
+        color: white;
+        font-weight: bold;
+        display: block;
+        width: 150px;
+        height: 50px;
+    }
+    
+    .buttonSuiv1 {
+        background-color: #028A3D;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: .25rem;
+        color: white;
+        font-weight: bold;
+        display: block;
+        width: 150px;
+        height: 50px;
+    }
+    
+    .imgResult {
+        border: red solid 7px;
+        border-radius: 50%;
+        width: 150px;
+    }
+    
+    .Image {
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .UserLast {
+        text-align: center;
+    }
+    
+    .buttonAccueil {
+        background-color: rgb(18, 119, 8);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: .25rem;
+        color: white;
+        font-weight: bold;
+        display: block;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+        margin-top: 40px;
+    }

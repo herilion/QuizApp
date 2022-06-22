@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="pageAccueil" id="pageAccueil">
+        <div class="container">
+            <h2 class="title">JavaScript Quiz</h2>
+            <p class="firstParam">
+                Évaluez vos connaissances en JavaScript en répondant aux questions que nous avons spécialement sélectionnées pour vous. C'est fun et c'est gratuit.
+            </p>
+            <div class="form">
+
+                <div class="input-group">
+                    <label for="username" class="label">Nom</label>
+                    <input id="username" placeholder="Votre nom ici" type="text" class="input">
+                    <span class="error-message"></span>
+                </div>
+                <div class="input-group">
+                    <label for="email" class="label">Email</label>
+                    <input id="email" type="text" class="input" autocomplete placeholder="votre email ici">
+                    <span class="error-message"></span>
+                </div>
+                <div class="buttonContain">
+                    <button class="button" onclick="validationForm()">Commencer</button>
+                </div>
+    </section>
+    <section class="quizs" id="quizs">
+        <div class="container" id="quiz1">
+            <p>Dans quel balise HTML plaçons-nous le code JavaScript?</p>
+            <h3>Questions 1/15</h3>
+            <div class="progressBar" id="progressBar">
+                <div class="progressBar0" id="progressBarB"></div>
+            </div>
+            <div class="reponse1" id="reponse1">
+                <label for="rep1"><input type="radio" class="ts" name="1" id="rep1"><span>La balise js</span></label>
+                <label for="rep2"><input type="radio" class="ts" name="1" id="rep2"><span>La balise javascript</span></label>
+                <label for="rep3"><input type="radio" class="ts" name="1" id="rep3"><span>La balise script</span></label>
+                <label for="rep4"><input type="radio" class="ts" name="1" id="rep4"><span>La balise rel</span></label>
+            </div>
+            <div class="button1">
+                <button class="buttonQuit1">Quitter</button>
+                <button class="buttonSuiv1" onclick="nextPage()">Suivant</button>
+            </div>
+        </div>
+    </section>
+    <section class="lastpage" id="lastpage">
+        <div class="container">
+            <h2 class="UserLast" id="UserLast">Heritier</h2>
+            <p class="lastEmail" id="lastEmail">heritierlionge@yahoo.com</p>
+            <div class="Image" id="Image">
+                <img src="images/check_fail.png" alt="" id="imgResult" class="imgResult">
+            </div>
+            <div class="buttonContain">
+                <button class="buttonAccueil" id="buttonAccueil" onclick="validationForm()">Accueil</button>
+            </div>
+        </div>
+    </section>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
