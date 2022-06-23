@@ -42,7 +42,8 @@ setInterval(() => {
 
 }, 600);
 
-//minuteur
+// debut minuteur
+
 let mm = 60;
 setInterval(() => {
     if (mm >= 0 && quiz1.style.display == 'block') {
@@ -52,11 +53,14 @@ setInterval(() => {
 
 }, 1000);
 
+//fonction pour renouveller les questionnaires
+
 function Question(phrase, assertion, correct) {
     this.phrase = phrase;
     this.assertion = assertion;
     this.correct = correct;
 }
+//liste des questions
 
 const listQuestions = [
     new Question("Comment faire appelle à une fonction nommée « sum »?", ["sum()", "call function sum()", "call sum()", "Aucune de ces réponses n’est vraie."], 0),
@@ -80,12 +84,20 @@ const titre = document.querySelector('#quiz1 p');
 const assertions = document.querySelectorAll('#quiz1 label span');
 let numeroQuestion = -1;
 
+//fonction pour le bouton suivant
 function nextPage() {
     numeroQuestion++;
     titre.textContent = listQuestions[numeroQuestion].phrase;
     for (let i = 0; i < assertions.length; i++) {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
+}
+//bouton quitter
+
+function QuitterPage() {
+    const lastPage = document.querySelector('#lastpage')
+    quiz1.style.display = 'none';
+    lastPage.style.display = 'block'
 }
 
 
