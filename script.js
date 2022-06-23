@@ -28,7 +28,9 @@ function validationForm() {
     if (vrai) {
         const quizs = document.querySelector('#quiz1');
         const PageAccueil = document.querySelector('#pageAccueil');
+        const LastPage = document.querySelector('#lastpage');
         PageAccueil.style.display = 'none';
+        LastPage.style.display = 'none';
         quiz1.style.display = 'block';
     }
 }
@@ -95,10 +97,16 @@ function nextPage() {
 //bouton quitter
 
 function QuitterPage() {
-    const lastPage = document.querySelector('#lastpage')
+    const lastPage1 = document.getElementById('lastpage')
     quiz1.style.display = 'none';
-    lastPage.style.display = 'block'
+    lastPage1.style.display = 'block'
 }
 
 
-///
+///Bouton accueil du lastPage
+function ReturnToFistPage() {
+    const PageAccueil = document.querySelector('#pageAccueil');
+    PageAccueil.style.display = 'block';
+    LastPage.style.display = 'none';
+    quiz1.style.display = 'none'
+}
