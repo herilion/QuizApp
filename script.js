@@ -1,13 +1,16 @@
-const PageAccueil = document.querySelector('#pageAccueil');
-const nom = document.querySelector('#username');
+let nom = document.querySelector('#username');
 let email = document.querySelector('#email');
 const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
 const error_message = document.getElementsByClassName('error-message')
+const pageAccueil = document.querySelector('#pageAccueil');
 const quizs = document.querySelector('#quiz1');
 const LastPage = document.querySelector('#lastpage');
-let vrai = false;
+let btnSuivant = document.querySelector('.buttonSuiv1')
 let btnCommencer = document.querySelector('.button');
+let btnQuitter = document.querySelector('.buttonQuit1')
+let btnAccueil = document.querySelector('.buttonAccueil1')
 btnCommencer.addEventListener('click', function() {
+        let vrai = false;
         if (nom.value.length == 0) {
             error_message[0].textContent = "N'oubliez pas de renseigner votre nom"
             vrai = false;
@@ -32,7 +35,7 @@ btnCommencer.addEventListener('click', function() {
         }
         if (vrai) {
 
-            PageAccueil.style.display = 'none';
+            pageAccueil.style.display = 'none';
             LastPage.style.display = 'none';
             quiz1.style.display = 'block';
         }
@@ -48,7 +51,7 @@ setInterval(() => {
 
 }, 600);
 
-// debut minuteur
+// minuteur
 
 let mm = 60;
 setInterval(() => {
@@ -61,7 +64,8 @@ setInterval(() => {
 
 //fonction pour renouveller les questionnaires
 
-function Question(phrase, assertion, correct) {
+function Question(menu, phrase, assertion, correct) {
+    this.menu = menu;
     this.phrase = phrase;
     this.assertion = assertion;
     this.correct = correct;
@@ -69,48 +73,47 @@ function Question(phrase, assertion, correct) {
 //liste des questions
 
 const listQuestions = [
-    new Question("Comment faire appelle à une fonction nommée « sum »?", ["sum()", "call function sum()", "call sum()", "Aucune de ces réponses n’est vraie."], 0),
-    new Question("Quel est le bon endroit pour insérer un code JavaScript?", ["La section 'head'", "La section 'body'", "Les deux sections 'head' et 'body' sont correcte", "Aucune de ces réponses n’est vraie."], 1),
-    new Question("cochez un framework php", ["express", "rails", "laravel", "spring "], 2),
-    new Question("React js est un ", ["language", "framework", "library", "IDE "], 2),
-    new Question("Quelle est la syntaxe correcte pour faire référence à un script externe appelé « myscript.js »? ", ["\<script href=\"myscript.js\"\>", "\<script name=\"myscript.js\">", "\<script src=\"myscript.js\"\>", "Tout les réponses sont vrais"], 3),
-    new Question("Le fichier externe de JavaScript doit contenir la balise <script>?", ["Vrai", "Faux", "Toutes reponses sont bonnes", "Je ne sais pas"], 3),
-    new Question("Comment écrivez-vous « Hello World » dans une boîte d’alerte?", ["msg(\"Hello World \");", "alert(\"Hello World \");", "alertBox(\"Hello World \");", "msgBox(\"Hello World \");"], 2),
-    new Question("Comment écrire une condition IF en JavaScript? ", ["if a = 2 then", "if a = 2", "if a == 2 else", "if (a == 2)"], 2),
-    new Question("Comment écrire une condition IF pour vérifier si « a » n’est PAS égal à 2? ", ["f a <> 2", "if (a != 2)", "if a =! 2 then", "if (a <> 2)"], 2),
-    new Question("Comment créer une fonction en JavaScript? ", ["function f()", "function = f()", "function:f()", "Aucune de ces réponses n’est vraie."], 2),
-    new Question("Quelle est la syntaxe correcte pour vérifier la valeur de « c » ? ", ["if (c == \"XYZ \") then { } else { }", "if (c = \"XYZ \") then { } else { }", "if (c == \"XYZ \") { } else { }", "if (c = \"XYZ \") { } else { }"], 2),
-    new Question("JavaScript est-il un langage sensible à la casse?", ["Oui", "Non", "Oui et Non", "Je ne sais pas"], 0),
-    new Question("Quelle est la sortie de cette ligne : String.fromCharCode(65) ?", ["1", "A", "Erreur", "False"], 1),
-    new Question("Quel événement utilisez-vous pour exécuter quelque chose une fois le chargement du page est terminé?", ["onfinished", "onload", "onunload", "oncomplete"], 1),
-    new Question("Quel mot clé intercepte toutes les valeurs sauf celles spécifiées?", ["All", "Any", "Default", "otherwise"], 2),
+    new Question("Questions 2/15", "Comment faire appelle à une fonction nommée « sum »?", ["sum()", "call function sum()", "call sum()", "Aucune de ces réponses n’est vraie."], 0),
+    new Question("Questions 3/15", "Quel est le bon endroit pour insérer un code JavaScript?", ["La section 'head'", "La section 'body'", "Les deux sections 'head' et 'body' sont correcte", "Aucune de ces réponses n’est vraie."], 1),
+    new Question("Questions 4/15", "cochez un framework php", ["express", "rails", "laravel", "spring "], 2),
+    new Question("Questions 5/15", "React js est un ", ["language", "framework", "library", "IDE "], 2),
+    new Question("Questions 6/15", "Quelle est la syntaxe correcte pour faire référence à un script externe appelé « myscript.js »? ", ["\<script href=\"myscript.js\"\>", "\<script name=\"myscript.js\">", "\<script src=\"myscript.js\"\>", "Tout les réponses sont vrais"], 3),
+    new Question("Questions 7/15", "Le fichier externe de JavaScript doit contenir la balise <script>?", ["Vrai", "Faux", "Toutes reponses sont bonnes", "Je ne sais pas"], 3),
+    new Question("Questions 8/15", "Comment écrivez-vous « Hello World » dans une boîte d’alerte?", ["msg(\"Hello World \");", "alert(\"Hello World \");", "alertBox(\"Hello World \");", "msgBox(\"Hello World \");"], 2),
+    new Question("Questions 9/15", "Comment écrire une condition IF en JavaScript? ", ["if a = 2 then", "if a = 2", "if a == 2 else", "if (a == 2)"], 2),
+    new Question("Questions 10/15", "Comment écrire une condition IF pour vérifier si « a » n’est PAS égal à 2? ", ["f a <> 2", "if (a != 2)", "if a =! 2 then", "if (a <> 2)"], 2),
+    new Question("Questions 11/15", "Comment créer une fonction en JavaScript? ", ["function f()", "function = f()", "function:f()", "Aucune de ces réponses n’est vraie."], 2),
+    new Question("Questions 12/15", "Quelle est la syntaxe correcte pour vérifier la valeur de « c » ? ", ["if (c == \"XYZ \") then { } else { }", "if (c = \"XYZ \") then { } else { }", "if (c == \"XYZ \") { } else { }", "if (c = \"XYZ \") { } else { }"], 2),
+    new Question("Questions 13/15", "JavaScript est-il un langage sensible à la casse?", ["Oui", "Non", "Oui et Non", "Je ne sais pas"], 0),
+    new Question("Questions 14/15", "Quelle est la sortie de cette ligne : String.fromCharCode(65) ?", ["1", "A", "Erreur", "False"], 1),
+    new Question("Questions 15/15", "Quel événement utilisez-vous pour exécuter quelque chose une fois le chargement du page est terminé?", ["onfinished", "onload", "onunload", "oncomplete"], 1),
 ];
 
 const titre = document.querySelector('#quiz1 p');
+const menu = document.querySelector('#quiz1 h3');
 const assertions = document.querySelectorAll('#quiz1 label span');
 let numeroQuestion = -1;
 
 //fonction pour le bouton suivant
-function nextPage() {
+btnSuivant.addEventListener('click', function() {
     numeroQuestion++;
     titre.textContent = listQuestions[numeroQuestion].phrase;
+    menu.textContent = listQuestions[numeroQuestion].menu;
+
     for (let i = 0; i < assertions.length; i++) {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
-}
+});
 //bouton quitter
-
-function QuitterPage() {
-    const lastPage1 = document.getElementById('lastpage')
+btnQuitter.addEventListener('click', function() {
     quiz1.style.display = 'none';
-    lastPage1.style.display = 'block'
-}
-
+    LastPage.style.display = 'block'
+});
 
 ///Bouton accueil du lastPage
-function ReturnToFistPage() {
-    const PageAccueil = document.querySelector('#pageAccueil');
-    PageAccueil.style.display = 'block';
+btnAccueil.addEventListener('click', function() {
+    pageAccueil.style.display = 'none';
     LastPage.style.display = 'none';
-    quiz1.style.display = 'none'
-}
+    quiz1.style.display = 'block';
+
+})
