@@ -1,4 +1,5 @@
-function validationForm() {
+const btnCommencer = document.querySelector('.button');
+let commencer = function validationForm() {
     const nom = document.querySelector('#username');
     const email = document.querySelector('#email');
     const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
@@ -17,6 +18,8 @@ function validationForm() {
     if (email.value.length == 0) {
         error_message[1].textContent = "N'oubliez pas de renseigner votre email"
         vrai = false;
+        const nom = document.querySelector('#username');
+        const email = document.querySelector('#email');
 
     } else if (!verificationEmail.test(email.value)) {
         error_message[1].textContent = "Entrez un email correct"
@@ -34,6 +37,7 @@ function validationForm() {
         quiz1.style.display = 'block';
     }
 }
+btnCommencer.addEventListener('click', commencer);
 //progressbar
 let m = 100;
 setInterval(() => {
