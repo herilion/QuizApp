@@ -140,6 +140,8 @@
         cursor: pointer;
     }
     
+    input[type:"email"]:invalid {}
+    
     .button1 {
         display: flex;
         justify-content: center;
@@ -186,7 +188,7 @@
         padding: 20px;
     }
     
-    .UserLast {
+    .lastUser {
         text-align: center;
     }
     
