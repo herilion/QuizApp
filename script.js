@@ -1,44 +1,44 @@
-const btnCommencer = document.querySelector('.button');
-let commencer = function validationForm() {
-    const nom = document.querySelector('#username');
-    const email = document.querySelector('#email');
-    const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
-    const error_message = document.getElementsByClassName('error-message')
-    let vrai = false;
-    if (nom.value.length == 0) {
-        error_message[0].textContent = "N'oubliez pas de renseigner votre nom"
-        vrai = false;
-    } else if (nom.value.length < 3) {
-        error_message[0].textContent = "Entrez un nom valide"
-        vrai = false;
-    } else {
-        error_message[0].textContent = ""
-        vrai = true;
-    }
-    if (email.value.length == 0) {
-        error_message[1].textContent = "N'oubliez pas de renseigner votre email"
-        vrai = false;
-        const nom = document.querySelector('#username');
-        const email = document.querySelector('#email');
+const PageAccueil = document.querySelector('#pageAccueil');
+const nom = document.querySelector('#username');
+let email = document.querySelector('#email');
+const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
+const error_message = document.getElementsByClassName('error-message')
+const quizs = document.querySelector('#quiz1');
+const LastPage = document.querySelector('#lastpage');
+let vrai = false;
+let btnCommencer = document.querySelector('.button');
+btnCommencer.addEventListener('click', function() {
+        if (nom.value.length == 0) {
+            error_message[0].textContent = "N'oubliez pas de renseigner votre nom"
+            vrai = false;
+        } else if (nom.value.length < 3) {
+            error_message[0].textContent = "Entrez un nom valide"
+            vrai = false;
+        } else {
+            error_message[0].textContent = ""
+            vrai = true;
+        }
+        if (email.value.length == 0) {
+            error_message[1].textContent = "N'oubliez pas de renseigner votre email"
+            vrai = false;
 
-    } else if (!verificationEmail.test(email.value)) {
-        error_message[1].textContent = "Entrez un email correct"
-        vrai = false;
-    } else {
-        error_message[1].textContent = ""
-        vrai = true;
-    }
-    if (vrai) {
-        const quizs = document.querySelector('#quiz1');
-        const PageAccueil = document.querySelector('#pageAccueil');
-        const LastPage = document.querySelector('#lastpage');
-        PageAccueil.style.display = 'none';
-        LastPage.style.display = 'none';
-        quiz1.style.display = 'block';
-    }
-}
-btnCommencer.addEventListener('click', commencer);
-//progressbar
+
+        } else if (!verificationEmail.test(email.value)) {
+            error_message[1].textContent = "Entrez un email correct"
+            vrai = false;
+        } else {
+            error_message[1].textContent = ""
+            vrai = true;
+        }
+        if (vrai) {
+
+            PageAccueil.style.display = 'none';
+            LastPage.style.display = 'none';
+            quiz1.style.display = 'block';
+        }
+
+    })
+    //progressbar
 let m = 100;
 setInterval(() => {
     if (m >= 0 && quiz1.style.display == 'block') {
