@@ -135,7 +135,7 @@
         border: solid 1px rgb(207, 201, 201);
     }
     
-    label:hover {
+    .ts:hover {
         border: solid 2px green;
         cursor: pointer;
     }

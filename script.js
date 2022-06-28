@@ -16,7 +16,7 @@ const lastScore = document.querySelector('#scoreFinal span');
 const resultEchec = document.querySelector('#Image #imgEchec');
 const resultReussite = document.querySelector('#Image #imgReussite');
 
-btnCommencer.addEventListener('click', function() {
+btnCommencer.addEventListener('click', () => {
         let vrai = false;
         if (nom.value.length == 0) {
             errorMessage[0].textContent = "N'oubliez pas de renseigner votre nom"
@@ -127,14 +127,15 @@ const NextQuestion = () => {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
     listInput.forEach((element, index) => {
+        element.checked = false;
         if (element.checked && listQuestions[numeroQuestion - 1].correct == index) {
             score++;
         }
     });
-    console.log(score);
+    // console.log(score);
 }
 
-btnSuivant.addEventListener('click', function() {
+btnSuivant.addEventListener('click', () => {
     NextQuestion(this);
     mm = 60;
     m = 100;
@@ -151,7 +152,7 @@ btnQuitter.addEventListener('click', () => {
 });
 
 ///Bouton accueil du lastPage
-btnAccueil.addEventListener('click', function() {
+btnAccueil.addEventListener('click', () => {
     pageAccueil.style.display = 'block';
     lastPage.style.display = 'none';
     quizs.style.display = 'none';
