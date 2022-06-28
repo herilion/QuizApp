@@ -3,10 +3,10 @@ let email = document.querySelector('#email');
 let lastUser = document.querySelector('.lastUser');
 let lastEmail = document.querySelector('#lastEmail');
 const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
-const error_message = document.getElementsByClassName('error-message')
+const errorMessage = document.getElementsByClassName('error-message')
 const pageAccueil = document.querySelector('#pageAccueil');
 const quizs = document.querySelector('#quiz1');
-const LastPage = document.querySelector('#lastpage');
+const lastPage = document.querySelector('#lastpage');
 const btnSuivant = document.querySelector('.buttonSuiv1')
 const btnCommencer = document.querySelector('.button');
 const btnQuitter = document.querySelector('.buttonQuit1')
@@ -15,29 +15,29 @@ const btnAccueil = document.querySelector('.buttonAccueil1')
 btnCommencer.addEventListener('click', function() {
         let vrai = false;
         if (nom.value.length == 0) {
-            error_message[0].textContent = "N'oubliez pas de renseigner votre nom"
+            errorMessage[0].textContent = "N'oubliez pas de renseigner votre nom"
             vrai = false;
         } else if (nom.value.length < 3) {
-            error_message[0].textContent = "Entrez un nom valide"
+            errorMessage[0].textContent = "Entrez un nom valide"
             vrai = false;
         } else {
-            error_message[0].textContent = ""
+            errorMessage[0].textContent = ""
             vrai = true;
         }
         if (email.value.length == 0) {
-            error_message[1].textContent = "N'oubliez pas de renseigner votre email"
+            errorMessage[1].textContent = "N'oubliez pas de renseigner votre email"
             vrai = false;
         } else if (!verificationEmail.test(email.value)) {
-            error_message[1].textContent = "Entrez un email correct"
+            erroMessage[1].textContent = "Entrez un email correct"
             vrai = false;
         } else {
-            error_message[1].textContent = ""
+            errorMessage[1].textContent = ""
             vrai = true;
         }
         if (vrai) {
             quiz1.style.display = 'block';
             pageAccueil.style.display = 'none';
-            LastPage.style.display = 'none';
+            lastPage.style.display = 'none';
 
 
         }
@@ -45,7 +45,7 @@ btnCommencer.addEventListener('click', function() {
     })
     //progressbar
 let m = 100;
-let mm = 60; // minuteur
+
 setInterval(() => {
     if (m >= 0 && quiz1.style.display == 'block') {
         document.getElementById("progressBarB").style.width = m + '%';
@@ -54,11 +54,16 @@ setInterval(() => {
 
 }, 600);
 
+let mm = 60; // minuteur
 
 setInterval(() => {
-    if (mm >= 0 && quiz1.style.display == 'block') {
+    if (mm > 0 && quiz1.style.display == 'block') {
         minuteur1.innerText = mm;
         mm--;
+    } else if (mm == 0) {
+        NextQuestion();
+        mm = 60;
+        m = 100;
     }
 
 }, 1000);
@@ -96,7 +101,7 @@ const assertions = document.querySelectorAll('#quiz1 label span');
 let numeroQuestion = -1;
 
 //fonction pour le bouton suivant
-btnSuivant.addEventListener('click', function() {
+const NextQuestion = function() {
     numeroQuestion++;
     titre.textContent = listQuestions[numeroQuestion].phrase;
     menu.textContent = listQuestions[numeroQuestion].menu;
@@ -104,11 +109,17 @@ btnSuivant.addEventListener('click', function() {
     for (let i = 0; i < assertions.length; i++) {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
+}
+btnSuivant.addEventListener('click', function() {
+    NextQuestion(this);
+    mm = 60;
+    m = 100;
+
 });
 //bouton quitter
 btnQuitter.addEventListener('click', function() {
     quiz1.style.display = 'none';
-    LastPage.style.display = 'block';
+    lastPage.style.display = 'block';
     console.log(lastUser, nom);
     lastUser.innerText = nom.value;
     lastEmail.innerText = email.value;
@@ -118,7 +129,7 @@ btnQuitter.addEventListener('click', function() {
 ///Bouton accueil du lastPage
 btnAccueil.addEventListener('click', function() {
     pageAccueil.style.display = 'block';
-    LastPage.style.display = 'none';
+    lastPage.style.display = 'none';
     quiz1.style.display = 'none';
 
 });

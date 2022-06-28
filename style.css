@@ -140,8 +140,6 @@
         cursor: pointer;
     }
     
-    input[type:"email"]:invalid {}
-    
     .button1 {
         display: flex;
         justify-content: center;
@@ -192,20 +190,6 @@
         text-align: center;
     }
     
-    .buttonAccueil {
-        background-color: rgb(18, 119, 8);
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: .25rem;
-        color: white;
-        font-weight: bold;
-        display: block;
-        width: 50%;
-        text-align: center;
-        cursor: pointer;
-        margin-top: 40px;
-    }
-    
     .buttonAccueil1 {
         background-color: rgb(18, 119, 8);
         padding: 1rem 2rem;
@@ -217,5 +201,5 @@
         width: 50%;
         text-align: center;
         cursor: pointer;
-        margin-top: 40px;
+        margin-top: 80px;
     }
