@@ -175,8 +175,14 @@
         height: 50px;
     }
     
-    .imgResult {
-        border: red solid 7px;
+    .imgReussite {
+        border: rgb(13, 231, 57) solid 7px;
+        border-radius: 50%;
+        width: 150px;
+    }
+    
+    .imgEchec {
+        border: rgb(231, 13, 67) solid 7px;
         border-radius: 50%;
         width: 150px;
     }
@@ -201,5 +207,9 @@
         width: 50%;
         text-align: center;
         cursor: pointer;
-        margin-top: 80px;
+        margin-top: 40px;
+    }
+    
+    #scoreFinal {
+        text-align: center;
     }

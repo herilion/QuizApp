@@ -1,7 +1,7 @@
-let nom = document.querySelector('#username');
-let email = document.querySelector('#email');
-let lastUser = document.querySelector('.lastUser');
-let lastEmail = document.querySelector('#lastEmail');
+const nom = document.querySelector('#username');
+const email = document.querySelector('#email');
+const lastUser = document.querySelector('.lastUser');
+const lastEmail = document.querySelector('#lastEmail');
 const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
 const errorMessage = document.getElementsByClassName('error-message')
 const pageAccueil = document.querySelector('#pageAccueil');
@@ -11,6 +11,10 @@ const btnSuivant = document.querySelector('.buttonSuiv1')
 const btnCommencer = document.querySelector('.button');
 const btnQuitter = document.querySelector('.buttonQuit1')
 const btnAccueil = document.querySelector('.buttonAccueil1')
+const listInput = document.querySelectorAll('#reponse1 input')
+const lastScore = document.querySelector('#scoreFinal span');
+const resultEchec = document.querySelector('#Image #imgEchec');
+const resultReussite = document.querySelector('#Image #imgReussite');
 
 btnCommencer.addEventListener('click', function() {
         let vrai = false;
@@ -35,9 +39,11 @@ btnCommencer.addEventListener('click', function() {
             vrai = true;
         }
         if (vrai) {
-            quiz1.style.display = 'block';
+
             pageAccueil.style.display = 'none';
             lastPage.style.display = 'none';
+            quizs.style.display = 'block';
+            NextQuestion(this);
 
 
         }
@@ -79,16 +85,17 @@ function Question(menu, phrase, assertion, correct) {
 //liste des questions
 
 const listQuestions = [
+    new Question("Question 1/15", "Dans quel balise HTML plaçons-nous le code JavaScript?", ["la balise js", "La balise javascript", "La balise script", "La balise rel"], 2),
     new Question("Question 2/15", "Comment faire appelle à une fonction nommée « sum »?", ["sum()", "call function sum()", "call sum()", "Aucune de ces réponses n’est vraie."], 0),
     new Question("Question 3/15", "Quel est le bon endroit pour insérer un code JavaScript?", ["La section 'head'", "La section 'body'", "Les deux sections 'head' et 'body' sont correcte", "Aucune de ces réponses n’est vraie."], 1),
     new Question("Question 4/15", "cochez un framework php", ["express", "rails", "laravel", "spring "], 2),
     new Question("Question 5/15", "React js est un ", ["language", "framework", "library", "IDE "], 2),
-    new Question("Question 6/15", "Quelle est la syntaxe correcte pour faire référence à un script externe appelé « myscript.js »? ", ["\<script href=\"myscript.js\"\>", "\<script name=\"myscript.js\">", "\<script src=\"myscript.js\"\>", "Tout les réponses sont vrais"], 3),
-    new Question("Question 7/15", "Le fichier externe de JavaScript doit contenir la balise <script>?", ["Vrai", "Faux", "Toutes reponses sont bonnes", "Je ne sais pas"], 3),
-    new Question("Question 8/15", "Comment écrivez-vous « Hello World » dans une boîte d’alerte?", ["msg(\"Hello World \");", "alert(\"Hello World \");", "alertBox(\"Hello World \");", "msgBox(\"Hello World \");"], 2),
-    new Question("Question 9/15", "Comment écrire une condition IF en JavaScript? ", ["if a = 2 then", "if a = 2", "if a == 2 else", "if (a == 2)"], 2),
-    new Question("Question 10/15", "Comment écrire une condition IF pour vérifier si « a » n’est PAS égal à 2? ", ["f a <> 2", "if (a != 2)", "if a =! 2 then", "if (a <> 2)"], 2),
-    new Question("Question 11/15", "Comment créer une fonction en JavaScript? ", ["function f()", "function = f()", "function:f()", "Aucune de ces réponses n’est vraie."], 2),
+    new Question("Question 6/15", "Quelle est la syntaxe correcte pour faire référence à un script externe appelé « myscript.js »? ", ["\<script href=\"myscript.js\"\>", "\<script name=\"myscript.js\">", "\<script src=\"myscript.js\"\>", "Tout les réponses sont vrais"], 2),
+    new Question("Question 7/15", "Le fichier externe de JavaScript doit contenir la balise <script>?", ["Vrai", "Faux", "Toutes reponses sont bonnes", "Je ne sais pas"], 1),
+    new Question("Question 8/15", "Comment écrivez-vous « Hello World » dans une boîte d’alerte?", ["msg(\"Hello World \");", "alert(\"Hello World \");", "alertBox(\"Hello World \");", "msgBox(\"Hello World \");"], 1),
+    new Question("Question 9/15", "Comment écrire une condition IF en JavaScript? ", ["if a = 2 then", "if a = 2", "if a == 2 else", "if (a == 2)"], 3),
+    new Question("Question 10/15", "Comment écrire une condition IF pour vérifier si « a » n’est PAS égal à 2? ", ["if a <> 2", "if (a != 2)", "if a =! 2 then", "if (a <> 2)"], 1),
+    new Question("Question 11/15", "Comment créer une fonction en JavaScript? ", ["function f()", "function = f()", "function:f()", "Aucune de ces réponses n’est vraie."], 0),
     new Question("Question 12/15", "Quelle est la syntaxe correcte pour vérifier la valeur de « c » ? ", ["if (c == \"XYZ \") then { } else { }", "if (c = \"XYZ \") then { } else { }", "if (c == \"XYZ \") { } else { }", "if (c = \"XYZ \") { } else { }"], 2),
     new Question("Question 13/15", "JavaScript est-il un langage sensible à la casse?", ["Oui", "Non", "Oui et Non", "Je ne sais pas"], 0),
     new Question("Question 14/15", "Quelle est la sortie de cette ligne : String.fromCharCode(65) ?", ["1", "A", "Erreur", "False"], 1),
@@ -100,16 +107,33 @@ const menu = document.querySelector('#quiz1 h3');
 const assertions = document.querySelectorAll('#quiz1 label span');
 let numeroQuestion = -1;
 
+let score = 0;
+
 //fonction pour le bouton suivant
-const NextQuestion = function() {
+const NextQuestion = () => {
     numeroQuestion++;
     titre.textContent = listQuestions[numeroQuestion].phrase;
     menu.textContent = listQuestions[numeroQuestion].menu;
+    if (numeroQuestion == 14) {
+        quizs.style.display = 'none';
+        lastPage.style.display = 'block';
+        lastUser.innerText = nom.value;
+        lastEmail.innerText = email.value;
+        afficheScore(this);
+
+    }
 
     for (let i = 0; i < assertions.length; i++) {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
+    listInput.forEach((element, index) => {
+        if (element.checked && listQuestions[numeroQuestion - 1].correct == index) {
+            score++;
+        }
+    });
+    console.log(score);
 }
+
 btnSuivant.addEventListener('click', function() {
     NextQuestion(this);
     mm = 60;
@@ -117,12 +141,12 @@ btnSuivant.addEventListener('click', function() {
 
 });
 //bouton quitter
-btnQuitter.addEventListener('click', function() {
-    quiz1.style.display = 'none';
+btnQuitter.addEventListener('click', () => {
+    quizs.style.display = 'none';
     lastPage.style.display = 'block';
-    console.log(lastUser, nom);
     lastUser.innerText = nom.value;
     lastEmail.innerText = email.value;
+    afficheScore(this);
 
 });
 
@@ -130,6 +154,19 @@ btnQuitter.addEventListener('click', function() {
 btnAccueil.addEventListener('click', function() {
     pageAccueil.style.display = 'block';
     lastPage.style.display = 'none';
-    quiz1.style.display = 'none';
+    quizs.style.display = 'none';
 
 });
+const afficheScore = () => {
+    lastScore.textContent = score;
+    if (score < 8) {
+        resultReussite.style.display = 'none';
+
+    } else if (score >= 8) {
+        resultEchec.style.display = 'none';
+
+    }
+
+}
+
+//coding by Heritier LIONGE
