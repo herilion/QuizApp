@@ -127,12 +127,12 @@ const NextQuestion = () => {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
     listInput.forEach((element, index) => {
-        element.checked = false;
         if (element.checked && listQuestions[numeroQuestion - 1].correct == index) {
             score++;
         }
+        element.checked = false;
     });
-    // console.log(score);
+    console.log(score);
 }
 
 btnSuivant.addEventListener('click', () => {
