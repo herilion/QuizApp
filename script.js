@@ -63,16 +63,17 @@ setInterval(() => {
 let mm = 60; // minuteur
 
 setInterval(() => {
-    if (mm > 0 && quiz1.style.display == 'block') {
-        minuteur1.innerText = mm;
-        mm--;
-    } else if (mm == 0) {
+    if (mm === 0) {
         NextQuestion();
         mm = 60;
         m = 100;
+    } else if (mm > 0 && quiz1.style.display == 'block') {
+        minuteur1.innerText = mm;
+        mm--;
     }
 
 }, 1000);
+
 
 //fonction pour renouveller les questionnaires
 
