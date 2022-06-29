@@ -414,4 +414,11 @@
         #scoreFinal {
             text-align: center;
         }
+        .listImgIcones {
+            display: flex;
+            justify-content: center;
+        }
+        .Icons {
+            width: 20px;
+        }
     }
