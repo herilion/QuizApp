@@ -128,7 +128,7 @@ const NextQuestion = () => {
         assertions[i].textContent = listQuestions[numeroQuestion].assertion[i]
     }
     listInput.forEach((element, index) => {
-        if (element.checked && listQuestions[numeroQuestion - 1].correct == index) {
+        if (element.checked && listQuestions[numeroQuestion].correct == index) {
             score++;
         }
         element.checked = false;
