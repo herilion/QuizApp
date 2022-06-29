@@ -102,12 +102,7 @@
     }
     
     .listImgIcones {
-        display: flex;
-        justify-content: center;
-    }
-    
-    .Icons {
-        width: 20px;
+        display: none;
     }
     /*
 .pageAccueil {
@@ -115,7 +110,8 @@
 }*/
     
     #quiz1,
-    #lastpage {
+    #lastpage,
+    .nameAuteur {
         display: none;
     }
     
@@ -420,5 +416,9 @@
         }
         .Icons {
             width: 20px;
+        }
+        .nameAuteur {
+            font-size: 10px;
+            display: block;
         }
     }
