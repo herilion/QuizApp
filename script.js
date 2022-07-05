@@ -17,28 +17,29 @@ const resultEchec = document.querySelector('#Image #imgEchec');
 const resultReussite = document.querySelector('#Image #imgReussite');
 
 btnCommencer.addEventListener('click', () => {
-        let vrai = false;
+        let vrai1 = 4;
+        let vrai2 = 5;
         if (nom.value.length == 0) {
             errorMessage[0].textContent = "N'oubliez pas de renseigner votre nom"
-            vrai = false;
+            vrai1 = 2;
         } else if (nom.value.length < 3) {
             errorMessage[0].textContent = "Entrez un nom valide"
-            vrai = false;
+            vrai1 = 2;
         } else {
             errorMessage[0].textContent = ""
-            vrai = true;
+            vrai1 = 3;
         }
         if (email.value.length == 0) {
             errorMessage[1].textContent = "N'oubliez pas de renseigner votre email"
-            vrai = false;
+            vrai2 = 2;
         } else if (!verificationEmail.test(email.value)) {
-            erroMessage[1].textContent = "Entrez un email correct"
-            vrai = false;
+            errorMessage[1].textContent = "Entrez un email correct"
+            vrai2 = 2;
         } else {
             errorMessage[1].textContent = ""
-            vrai = true;
+            vrai2 = 3;
         }
-        if (vrai) {
+        if (vrai1 == 3 && vrai2 == 3) {
 
             pageAccueil.style.display = 'none';
             lastPage.style.display = 'none';
