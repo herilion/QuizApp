@@ -144,20 +144,25 @@ btnSuivant.addEventListener('click', () => {
 
 });
 //bouton quitter
-btnQuitter.addEventListener('click', () => {
+btnQuitter.addEventListener('click', (e) => {
+    e.preventDefault()
     quizs.style.display = 'none';
     lastPage.style.display = 'block';
     lastUser.innerText = nom.value;
     lastEmail.innerText = email.value;
     afficheScore(this);
+    //document.querySelector('#form1').reset();
 
 });
 
 ///Bouton accueil du lastPage
 btnAccueil.addEventListener('click', () => {
+
     pageAccueil.style.display = 'block';
     lastPage.style.display = 'none';
     quizs.style.display = 'none';
+    nom.value = "";
+    email.value = "";
 
 });
 const afficheScore = () => {
