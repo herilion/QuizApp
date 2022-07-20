@@ -21,12 +21,12 @@
 
                 <div class="input-group">
                     <label for="username" class="label">Nom</label>
-                    <input id="username" placeholder="Votre nom ici" type="text" class="input">
+                    <div class="bored1"><input id="username" placeholder="Votre nom ici" type="text" class="input"></div>
                     <span class="error-message"></span>
                 </div>
                 <div class="input-group">
                     <label for="email" class="label">Email</label>
-                    <input id="email" type="email" class="input" placeholder="votre email ici">
+                    <div class="bored"><input id="email" type="email" class="input" placeholder="votre email ici"></div>
                     <span class="error-message"></span>
                 </div>
                 <div class="buttonContain">
@@ -45,16 +45,18 @@
     <section class="quizs" id="quizs">
         <div class="container" id="quiz1">
             <p></p>
-            <h3></h3>
-            <span id="minuteur1" class="minuteur"></span>
+            <div class="questionEtMinuteur">
+                <span></span>
+                <span id="minuteur1" class="minuteur"></span>
+            </div>
             <div class="progressBar" id="progressBar">
                 <div class="progressBar0" id="progressBarB"></div>
             </div>
             <div class="reponse1" id="reponse1">
-                <label for="rep1" class="ts"><input type="radio" class="ts" name="1" id="rep1"><span></span></label>
-                <label for="rep2" class="ts"><input type="radio" class="ts" name="1" id="rep2"><span></span></label>
-                <label for="rep3" class="ts"><input type="radio" class="ts" name="1" id="rep3"><span></span></label>
-                <label for="rep4" class="ts"><input type="radio" class="ts" name="1" id="rep4"><span></span></label>
+                <label for="rep1" class="ts"><input type="radio" class="ts radio" name="1" id="rep1"><span></span></label>
+                <label for="rep2" class="ts"><input type="radio" class="ts radio" name="1" id="rep2"><span></span></label>
+                <label for="rep3" class="ts"><input type="radio" class="ts radio" name="1" id="rep3"><span></span></label>
+                <label for="rep4" class="ts"><input type="radio" class="ts radio" name="1" id="rep4"><span></span></label>
             </div>
             <div class="button1">
                 <button class="buttonQuit1">Quitter</button>

@@ -2,7 +2,7 @@ const nom = document.querySelector('#username');
 const email = document.querySelector('#email');
 const lastUser = document.querySelector('.lastUser');
 const lastEmail = document.querySelector('#lastEmail');
-const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{5,}\.[a-z]{2,10}$/;
+const verificationEmail = /^[a-zA-Z0-9_.]{3,25}@[a-z]{2,}\.[a-z]{2,10}$/;
 const errorMessage = document.getElementsByClassName('error-message')
 const pageAccueil = document.querySelector('#pageAccueil');
 const quizs = document.querySelector('#quiz1');
@@ -15,37 +15,52 @@ const listInput = document.querySelectorAll('#reponse1 input')
 const lastScore = document.querySelector('#scoreFinal span');
 const resultEchec = document.querySelector('#Image #imgEchec');
 const resultReussite = document.querySelector('#Image #imgReussite');
+const label = document.querySelector('.bored')
+const label1 = document.querySelector('.bored1')
+const radio = document.querySelectorAll('.radio')
+
+//Validation du formulaire et Button commencer
 
 btnCommencer.addEventListener('click', () => {
         let vrai1 = 4;
         let vrai2 = 5;
         if (nom.value.length == 0) {
             errorMessage[0].textContent = "N'oubliez pas de renseigner votre nom"
+            label.style.border = 'red solid 1px';
             vrai1 = 2;
         } else if (nom.value.length < 3) {
             errorMessage[0].textContent = "Entrez un nom valide"
+            label.style.border = 'red solid 1px';
             vrai1 = 2;
         } else {
             errorMessage[0].textContent = ""
             vrai1 = 3;
+            label.style.border = 'red solid 1px';
         }
         if (email.value.length == 0) {
             errorMessage[1].textContent = "N'oubliez pas de renseigner votre email"
+            label1.style.border = 'red solid 1px';
             vrai2 = 2;
         } else if (!verificationEmail.test(email.value)) {
             errorMessage[1].textContent = "Entrez un email correct"
+            label1.style.border = 'red solid 1px';
             vrai2 = 2;
         } else {
             errorMessage[1].textContent = ""
             vrai2 = 3;
         }
+        if (vrai1 == 3) {
+            label1.style.border = 'none';
+        } else if (vrai2 == 3) {
+            label.style.border = 'none';
+        }
         if (vrai1 == 3 && vrai2 == 3) {
-
+            label1.style.border = 'none';
+            label.style.border = 'none';
             pageAccueil.style.display = 'none';
             lastPage.style.display = 'none';
             quizs.style.display = 'block';
             NextQuestion(this);
-
 
         }
 
@@ -64,11 +79,11 @@ setInterval(() => {
 let mm = 60; // minuteur
 
 setInterval(() => {
-    if (mm === 0) {
+    if (mm == -1) {
         NextQuestion();
         mm = 60;
         m = 100;
-    } else if (mm > 0 && quiz1.style.display == 'block') {
+    } else if (mm >= 0 && quiz1.style.display == 'block') {
         minuteur1.innerText = mm;
         mm--;
     }
@@ -76,13 +91,15 @@ setInterval(() => {
 }, 1000);
 
 
-//fonction pour renouveller les questionnaires
+//class Questions
 
-function Question(menu, phrase, assertion, correct) {
-    this.menu = menu;
-    this.phrase = phrase;
-    this.assertion = assertion;
-    this.correct = correct;
+class Question {
+    constructor(menu, phrase, assertion, correct) {
+        this.menu = menu;
+        this.phrase = phrase;
+        this.assertion = assertion;
+        this.correct = correct;
+    }
 }
 //liste des questions
 
@@ -105,7 +122,7 @@ const listQuestions = [
 ];
 
 const titre = document.querySelector('#quiz1 p');
-const menu = document.querySelector('#quiz1 h3');
+const menu = document.querySelector('#quiz1 span');
 const assertions = document.querySelectorAll('#quiz1 label span');
 let numeroQuestion = -1;
 
@@ -116,6 +133,8 @@ const NextQuestion = () => {
     numeroQuestion++;
     titre.textContent = listQuestions[numeroQuestion].phrase;
     menu.textContent = listQuestions[numeroQuestion].menu;
+    btnSuivant.style.background = '#89c7a4';
+    btnSuivant.style.cursor = 'not-allow';
     if (numeroQuestion == 14) {
         quizs.style.display = 'none';
         lastPage.style.display = 'block';
@@ -138,11 +157,23 @@ const NextQuestion = () => {
 }
 
 btnSuivant.addEventListener('click', () => {
-    NextQuestion(this);
-    mm = 60;
-    m = 100;
-
+    for (let i = 0; i < radio.length; i++) {
+        if (radio[i].checked == true) {
+            NextQuestion(this);
+            mm = 60;
+            m = 100;
+        }
+    }
 });
+
+for (let i = 0; i < assertions.length; i++) {
+    console.log(assertions[i]);
+    assertions[i].addEventListener('click', function() {
+        btnSuivant.style.background = 'rgb(18, 119, 8)';
+        btnSuivant.style.cursor = 'pointer';
+    })
+}
+
 //bouton quitter
 btnQuitter.addEventListener('click', (e) => {
     e.preventDefault()
@@ -151,7 +182,6 @@ btnQuitter.addEventListener('click', (e) => {
     lastUser.innerText = nom.value;
     lastEmail.innerText = email.value;
     afficheScore(this);
-    //document.querySelector('#form1').reset();
 
 });
 
