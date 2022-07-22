@@ -187,13 +187,7 @@ btnQuitter.addEventListener('click', (e) => {
 
 ///Bouton accueil du lastPage
 btnAccueil.addEventListener('click', () => {
-
-    pageAccueil.style.display = 'block';
-    lastPage.style.display = 'none';
-    quizs.style.display = 'none';
-    nom.value = "";
-    email.value = "";
-
+    window.location.reload();
 });
 const afficheScore = () => {
     lastScore.textContent = score;
