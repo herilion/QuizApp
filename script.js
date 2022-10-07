@@ -22,50 +22,50 @@ const radio = document.querySelectorAll('.radio')
 //Validation du formulaire et Button commencer
 
 btnCommencer.addEventListener('click', () => {
-        let vrai1 = 4;
-        let vrai2 = 5;
-        if (nom.value.length == 0) {
-            errorMessage[0].textContent = "N'oubliez pas de renseigner votre nom"
-            label.style.border = 'red solid 1px';
-            vrai1 = 2;
-        } else if (nom.value.length < 3) {
-            errorMessage[0].textContent = "Entrez un nom valide"
-            label.style.border = 'red solid 1px';
-            vrai1 = 2;
-        } else {
-            errorMessage[0].textContent = ""
-            vrai1 = 3;
-            label.style.border = 'red solid 1px';
-        }
-        if (email.value.length == 0) {
-            errorMessage[1].textContent = "N'oubliez pas de renseigner votre email"
-            label1.style.border = 'red solid 1px';
-            vrai2 = 2;
-        } else if (!verificationEmail.test(email.value)) {
-            errorMessage[1].textContent = "Entrez un email correct"
-            label1.style.border = 'red solid 1px';
-            vrai2 = 2;
-        } else {
-            errorMessage[1].textContent = ""
-            vrai2 = 3;
-        }
-        if (vrai1 == 3) {
-            label1.style.border = 'none';
-        } else if (vrai2 == 3) {
-            label.style.border = 'none';
-        }
-        if (vrai1 == 3 && vrai2 == 3) {
-            label1.style.border = 'none';
-            label.style.border = 'none';
-            pageAccueil.style.display = 'none';
-            lastPage.style.display = 'none';
-            quizs.style.display = 'block';
-            NextQuestion(this);
+    let vrai1 = 4;
+    let vrai2 = 5;
+    if (nom.value.length == 0) {
+        errorMessage[0].textContent = "N'oubliez pas de renseigner votre nom"
+        label.style.border = 'red solid 1px';
+        vrai1 = 2;
+    } else if (nom.value.length < 3) {
+        errorMessage[0].textContent = "Entrez un nom valide"
+        label.style.border = 'red solid 1px';
+        vrai1 = 2;
+    } else {
+        errorMessage[0].textContent = ""
+        vrai1 = 3;
+        label.style.border = 'red solid 1px';
+    }
+    if (email.value.length == 0) {
+        errorMessage[1].textContent = "N'oubliez pas de renseigner votre email"
+        label1.style.border = 'red solid 1px';
+        vrai2 = 2;
+    } else if (!verificationEmail.test(email.value)) {
+        errorMessage[1].textContent = "Entrez un email correct"
+        label1.style.border = 'red solid 1px';
+        vrai2 = 2;
+    } else {
+        errorMessage[1].textContent = ""
+        vrai2 = 3;
+    }
+    if (vrai1 == 3) {
+        label1.style.border = 'none';
+    } else if (vrai2 == 3) {
+        label.style.border = 'none';
+    }
+    if (vrai1 == 3 && vrai2 == 3) {
+        label1.style.border = 'none';
+        label.style.border = 'none';
+        pageAccueil.style.display = 'none';
+        lastPage.style.display = 'none';
+        quizs.style.display = 'block';
+        NextQuestion(this);
 
-        }
+    }
 
-    })
-    //progressbar
+})
+//progressbar
 let m = 100;
 
 setInterval(() => {
@@ -168,13 +168,13 @@ btnSuivant.addEventListener('click', () => {
 
 for (let i = 0; i < assertions.length; i++) {
     console.log(assertions[i]);
-    assertions[i].addEventListener('click', function() {
+    assertions[i].addEventListener('click', function () {
         btnSuivant.style.background = 'rgb(18, 119, 8)';
         btnSuivant.style.cursor = 'pointer';
     })
 }
 
-//bouton quitter
+//bouton quitter de l'application
 btnQuitter.addEventListener('click', (e) => {
     e.preventDefault()
     quizs.style.display = 'none';
