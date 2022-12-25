@@ -174,7 +174,7 @@ for (let i = 0; i < assertions.length; i++) {
     })
 }
 
-//bouton quitter de l'application
+//bouton quitter de l'applicationQ
 btnQuitter.addEventListener('click', (e) => {
     e.preventDefault()
     quizs.style.display = 'none';
