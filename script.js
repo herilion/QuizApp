@@ -128,7 +128,7 @@ let numeroQuestion = -1;
 
 let score = 0;
 
-//fonction pour le bouton suivant
+//fonction pour le bouton suivant 
 const NextQuestion = () => {
     numeroQuestion++;
     titre.textContent = listQuestions[numeroQuestion].phrase;
